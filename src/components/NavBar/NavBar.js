@@ -7,7 +7,11 @@ import {
 
 const NavBar = () => {
   return (
-    <Navbar bg='primary' expand='lg'>
+    <Navbar
+      bg='primary'
+      className='rounded me-2 mb-5'
+      expand='lg'
+    >
       <Container>
         <Navbar.Brand
           className='text-light'
