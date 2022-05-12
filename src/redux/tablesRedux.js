@@ -15,6 +15,14 @@ export const updateTable = (payload) => ({
   payload,
 });
 
+export const fetchTables = (dispatch) => {
+  fetch('http://localhost:3131/api/tables')
+    .then((res) => res.json())
+    .then((tables) =>
+      dispatch(updateTable(tables))
+    );
+};
+
 //reducer
 const tablesReducer = (
   statePart = [],
