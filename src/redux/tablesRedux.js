@@ -1,4 +1,6 @@
 // selectors
+export const getAllTables = ({ tables }) =>
+  tables;
 
 //actions names
 const createActionName = (actionName) =>
