@@ -1,10 +1,5 @@
 const initialState = {
-  tables: [
-    {
-      id: '1',
-      name: 'Table 1',
-    },
-  ],
+  tables: [{}],
 };
 
 export default initialState;
