@@ -12,7 +12,7 @@ const Tables = () => {
 
   if (tables.length === 0)
     return (
-      <div className='text-center mt-5 mb-5'>
+      <>
         <Button variant='primary' disabled>
           <Spinner
             as='span'
@@ -23,7 +23,7 @@ const Tables = () => {
           />
           Loading...
         </Button>
-      </div>
+      </>
     );
   return (
     <ListGroup variant='flush'>
@@ -32,13 +32,16 @@ const Tables = () => {
           key={table.id}
           className='py-3 mb-4 d-flex justify-content-between align-items-start'
         >
-          <h2 className='my-0'>
-            TABLE{table.id}
-          </h2>
-          <b>Status: </b>
-          <span className='ms-1 text-muted'>
-            {table.status}
-          </span>
+          <div className='d-flex align-items-center'>
+            <h2 className='my-0'>
+              TABLE{table.id}
+            </h2>
+            <span className='vr mx-3'></span>
+            <b className='mx-2'>Status: </b>
+            <span className='text-muted'>
+              {table.status}
+            </span>
+          </div>
           <Button
             as={Link}
             to={`/table/${table.id}`}
