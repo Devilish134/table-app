@@ -5,14 +5,14 @@ import {
 } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllTables } from '../../redux/tablesRedux';
+import { getAllTables } from '../../../redux/tablesRedux';
 
 const Tables = () => {
   const tables = useSelector(getAllTables);
 
   if (tables.length === 0)
     return (
-      <>
+      <div className='text-center my-5'>
         <Button variant='primary' disabled>
           <Spinner
             as='span'
@@ -23,7 +23,7 @@ const Tables = () => {
           />
           Loading...
         </Button>
-      </>
+      </div>
     );
   return (
     <ListGroup variant='flush'>

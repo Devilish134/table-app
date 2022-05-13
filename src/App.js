@@ -8,9 +8,9 @@ import { fetchTables } from './redux/tablesRedux';
 import Header from './components//views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import Home from './components/pages/Home/Home';
-import Table from './components/pages/Table/Table';
 import NotFound from './components/pages/NotFound/NotFound';
 import { Container } from 'react-bootstrap';
+import TablePage from './components/pages/TablePage/TablePage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route
             path='/table/:id'
-            element={<Table />}
+            element={<TablePage />}
           />
           <Route
             path='*'
