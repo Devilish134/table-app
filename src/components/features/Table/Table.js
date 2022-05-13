@@ -1,4 +1,9 @@
-import { Form } from 'react-bootstrap';
+import {
+  Col,
+  Form,
+  Row,
+  Button,
+} from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getAllTables } from '../../../redux/tablesRedux';
 
@@ -6,25 +11,73 @@ const Table = () => {
   const tables = useSelector(getAllTables);
 
   return (
-    <div
-      className='py-3 mb-4 d-flex justify-content-between mx-auto'
-      style={{ width: '350px' }}
+    <Form
+      key={tables.id}
+      className='d-flex justify-content-center my-5'
     >
-      <h5 className='my-4'>Status:</h5>
-      <Form.Select
-        className='mx-4 my-4'
-        aria-label='Default select example'
+      <Form.Group
+        as={Row}
+        style={{ maxWidth: '20rem' }}
       >
-        {tables.map((table) => (
-          <option
-            key={table.id}
-            value={table.status}
+        <Form.Label column sm='3'>
+          <b>Status:</b>
+        </Form.Label>
+        <Col sm='9' className='mb-3'>
+          <Form.Select value={tables.status}>
+            {tables.map((table) => (
+              <option>{table.status}</option>
+            ))}
+          </Form.Select>
+        </Col>
+        <Form.Label column sm='3'>
+          <b>People:</b>
+        </Form.Label>
+        <Col sm='9' className='d-flex mb-3'>
+          <Form.Control
+            className='text-center'
+            style={{ maxWidth: '3rem' }}
+          />
+          <span
+            className='mx-1 my-auto'
+            style={{ fontSize: '22px' }}
           >
-            {table.status}
-          </option>
-        ))}
-      </Form.Select>
-    </div>
+            /
+          </span>
+          <Form.Control
+            className='text-center'
+            style={{ maxWidth: '3rem' }}
+          />
+        </Col>
+        {tables.status !== 'busy' && (
+          <>
+            <Form.Label column sm='3'>
+              <b>Bill:</b>
+            </Form.Label>
+            <Col sm='9' className='d-flex mb-3'>
+              <span
+                className='me-1 my-auto'
+                style={{ fontSize: '20px' }}
+              >
+                $
+              </span>
+              <Form.Control
+                className='text-center'
+                style={{ maxWidth: '4rem' }}
+                value='0'
+              />
+            </Col>
+          </>
+        )}
+        <Col sm='12'>
+          <Button
+            variant='primary'
+            type='submit'
+          >
+            Update
+          </Button>
+        </Col>
+      </Form.Group>
+    </Form>
   );
 };
 
