@@ -1,4 +1,3 @@
-import { Button } from 'bootstrap';
 import { Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';

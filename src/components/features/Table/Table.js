@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Col,
   Form,
@@ -6,13 +7,27 @@ import {
 } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getAllTables } from '../../../redux/tablesRedux';
+import TableNotBusy from '../TableNotBusy/TableNotBusy';
 
-const Table = () => {
+const Table = ({
+  id,
+  maxPeopleAmount,
+  peopleAmount,
+  status,
+  bill,
+}) => {
   const tables = useSelector(getAllTables);
+
+  const [
+    currentPeopleAmount,
+    setCurrentPeopleAmount,
+  ] = useState(peopleAmount);
+  const [currentStatus, setCurrentStatus] =
+    useState(status);
 
   return (
     <Form
-      key={tables.id}
+      key={id}
       className='d-flex justify-content-center my-5'
     >
       <Form.Group
@@ -23,8 +38,7 @@ const Table = () => {
           <b>Status:</b>
         </Form.Label>
         <Col sm='9' className='mb-3'>
-          <Form.Select /*value={tables.status}*/
-          >
+          <Form.Select value={currentStatus}>
             {tables.map((table) => (
               <option>{table.status}</option>
             ))}
@@ -37,6 +51,7 @@ const Table = () => {
           <Form.Control
             className='text-center'
             style={{ maxWidth: '3rem' }}
+            value={currentPeopleAmount}
           />
           <span
             className='mx-1 my-auto'
@@ -47,9 +62,12 @@ const Table = () => {
           <Form.Control
             className='text-center'
             style={{ maxWidth: '3rem' }}
+            value={maxPeopleAmount}
+            disabled
           />
         </Col>
-        {tables.status !== 'busy' && (
+        {status !== 'busy' && <TableNotBusy />}
+        {status === 'busy' && (
           <>
             <Form.Label column sm='3'>
               <b>Bill:</b>
@@ -64,7 +82,7 @@ const Table = () => {
               <Form.Control
                 className='text-center'
                 style={{ maxWidth: '4rem' }}
-                //value='0'
+                value={bill}
               />
             </Col>
           </>
