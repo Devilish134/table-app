@@ -23,7 +23,8 @@ const Table = () => {
           <b>Status:</b>
         </Form.Label>
         <Col sm='9' className='mb-3'>
-          <Form.Select value={tables.status}>
+          <Form.Select /*value={tables.status}*/
+          >
             {tables.map((table) => (
               <option>{table.status}</option>
             ))}
@@ -63,7 +64,7 @@ const Table = () => {
               <Form.Control
                 className='text-center'
                 style={{ maxWidth: '4rem' }}
-                value='0'
+                //value='0'
               />
             </Col>
           </>
