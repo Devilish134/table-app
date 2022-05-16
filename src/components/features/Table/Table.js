@@ -5,8 +5,14 @@ import {
   Row,
   Button,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { getAllTables } from '../../../redux/tablesRedux';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import {
+  editTableRequest,
+  getAllTables,
+} from '../../../redux/tablesRedux';
 import TableNotBusy from '../TableNotBusy/TableNotBusy';
 
 const Table = ({
@@ -17,6 +23,7 @@ const Table = ({
   bill,
 }) => {
   const tables = useSelector(getAllTables);
+  const dispatch = useDispatch();
 
   const [
     currentPeopleAmount,
@@ -24,11 +31,27 @@ const Table = ({
   ] = useState(peopleAmount);
   const [currentStatus, setCurrentStatus] =
     useState(status);
+  const [currentBill, setCurrentBill] =
+    useState(bill);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      editTableRequest({
+        currentStatus,
+        currentPeopleAmount,
+        maxPeopleAmount,
+        currentBill,
+        id,
+      })
+    );
+  };
 
   return (
     <Form
       key={id}
       className='d-flex justify-content-center my-5'
+      onSubmit={handleSubmit}
     >
       <Form.Group
         as={Row}
@@ -38,7 +61,12 @@ const Table = ({
           <b>Status:</b>
         </Form.Label>
         <Col sm='9' className='mb-3'>
-          <Form.Select value={currentStatus}>
+          <Form.Select
+            value={currentStatus}
+            onChange={(e) =>
+              setCurrentStatus(e.target.value)
+            }
+          >
             {tables.map((table) => (
               <option>{table.status}</option>
             ))}
@@ -52,6 +80,11 @@ const Table = ({
             className='text-center'
             style={{ maxWidth: '3rem' }}
             value={currentPeopleAmount}
+            onChange={(e) =>
+              setCurrentPeopleAmount(
+                e.target.value
+              )
+            }
           />
           <span
             className='mx-1 my-auto'
@@ -62,7 +95,7 @@ const Table = ({
           <Form.Control
             className='text-center'
             style={{ maxWidth: '3rem' }}
-            value={maxPeopleAmount}
+            defaultValue={maxPeopleAmount}
             disabled
           />
         </Col>
@@ -82,7 +115,10 @@ const Table = ({
               <Form.Control
                 className='text-center'
                 style={{ maxWidth: '4rem' }}
-                value={bill}
+                value={currentBill}
+                onChange={(e) =>
+                  setCurrentBill(e.target.value)
+                }
               />
             </Col>
           </>
