@@ -73,7 +73,7 @@ const tablesReducer = (
         }
       );
       return [
-        //...filteredTables,
+        ...filteredTables,
         action.payload,
       ];
     }

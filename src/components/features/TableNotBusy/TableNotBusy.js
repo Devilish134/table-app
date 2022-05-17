@@ -14,7 +14,7 @@ const TableNotBusy = ({ bill }) => {
           $
         </span>
         <Form.Control
-          className='text-center'
+          className='text-center bg-white'
           style={{ maxWidth: '4rem' }}
           value='0'
           disabled

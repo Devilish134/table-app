@@ -35,6 +35,18 @@ const Table = (props) => {
     );
   };
 
+  const validPeopleAmount = (num) => {
+    if (num > maxPeopleAmount) {
+      setPeopleAmount(maxPeopleAmount);
+    } else if (num <= 0) {
+      setPeopleAmount(0);
+    } else if (isNaN(num)) {
+      setPeopleAmount(5);
+    } else {
+      setPeopleAmount(num);
+    }
+  };
+
   return (
     <Form
       key={id}
@@ -67,7 +79,7 @@ const Table = (props) => {
             style={{ maxWidth: '3rem' }}
             value={peopleAmount}
             onChange={(e) =>
-              setPeopleAmount(e.target.value)
+              validPeopleAmount(e.target.value)
             }
           />
           <span
@@ -77,7 +89,7 @@ const Table = (props) => {
             /
           </span>
           <Form.Control
-            className='text-center'
+            className='text-center bg-white'
             style={{ maxWidth: '3rem' }}
             defaultValue={maxPeopleAmount}
             disabled
