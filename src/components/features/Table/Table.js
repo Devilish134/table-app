@@ -40,9 +40,11 @@ const Table = (props) => {
       setPeopleAmount(maxPeopleAmount);
     } else if (num <= 0) {
       setPeopleAmount(0);
-    } else if (isNaN) {
+    } else if (isNaN(num)) {
       setPeopleAmount(5);
-    } else {
+    } else if (status !== 'busy')
+      setPeopleAmount(0);
+    else {
       setPeopleAmount(num);
     }
   };

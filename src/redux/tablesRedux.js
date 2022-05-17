@@ -1,3 +1,5 @@
+import { API_URL } from '../config';
+
 // selectors
 export const getAllTables = ({ tables }) =>
   tables;
@@ -29,7 +31,7 @@ export const editTable = (payload) => ({
 
 export const fetchTables = () => {
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tables/')
+    fetch(`${API_URL}/tables/`)
       .then((res) => res.json())
       .then((tables) =>
         dispatch(updateTable(tables))
@@ -50,7 +52,7 @@ export const editTableRequest = (
     };
 
     fetch(
-      `http://localhost:3131/api/tables/${updatedTable.id}`,
+      `${API_URL}/tables/${updatedTable.id}`,
       options
     ).then(() =>
       dispatch(editTable(updatedTable))
