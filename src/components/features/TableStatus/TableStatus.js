@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
-import { getAllTables } from '../../../redux/tablesRedux';
+import { getAllStatuses } from '../../../redux/statusRedux';
 
 const TableStatus = () => {
-  const tables = useSelector(getAllTables);
-
-  return (
-    <>
-      {tables.map((table) => (
-        <option>{table.status}</option>
-      ))}
-    </>
+  const tableStatus = useSelector(
+    getAllStatuses
   );
+
+  return tableStatus.map((status) => (
+    <option key={status}>{status}</option>
+  ));
 };
 
 export default TableStatus;
