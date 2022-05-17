@@ -15,14 +15,14 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand
           className='text-light'
-          href='#'
+          href='/'
         >
           Waiter.app
         </Navbar.Brand>
         <Nav className='justify-content-end flex-grow-1 pe-3'>
           <Nav.Link
             className='text-light'
-            href='#'
+            href='/'
           >
             Home
           </Nav.Link>

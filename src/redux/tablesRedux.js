@@ -43,7 +43,7 @@ export const editTableRequest = (
   return (dispatch) => {
     const options = {
       method: 'PUT',
-      Headers: {
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedTable),
