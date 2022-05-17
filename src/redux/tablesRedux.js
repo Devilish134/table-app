@@ -10,7 +10,7 @@ export const getTablesById = (
 
 //actions names
 const createActionName = (actionName) =>
-  'app/tables/${actionName)';
+  `app/tables/${actionName}`;
 const UPDATE_TABLE = createActionName(
   'UPDATE_TABLE'
 );
@@ -29,7 +29,7 @@ export const editTable = (payload) => ({
 
 export const fetchTables = () => {
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tables')
+    fetch('http://localhost:3131/api/tables/')
       .then((res) => res.json())
       .then((tables) =>
         dispatch(updateTable(tables))
@@ -42,7 +42,7 @@ export const editTableRequest = (
 ) => {
   return (dispatch) => {
     const options = {
-      method: 'UPDATE',
+      method: 'PUT',
       Headers: {
         'Content-Type': 'application/json',
       },
@@ -50,10 +50,10 @@ export const editTableRequest = (
     };
 
     fetch(
-      'http://localhost:3131/api/tables',
+      `http://localhost:3131/api/tables/${updatedTable.id}`,
       options
     ).then(() =>
-      dispatch(updateTable(updatedTable))
+      dispatch(editTable(updatedTable))
     );
   };
 };
@@ -66,8 +66,17 @@ const tablesReducer = (
   switch (action.type) {
     case UPDATE_TABLE:
       return [...action.payload];
-    case EDIT_TABLE:
-      return [...statePart, ...action.payload];
+    case EDIT_TABLE: {
+      const filteredTables = statePart.filter(
+        (table) => {
+          return table.id !== action.payload.id;
+        }
+      );
+      return [
+        //...filteredTables,
+        action.payload,
+      ];
+    }
     default:
       return statePart;
   }

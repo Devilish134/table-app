@@ -3,46 +3,34 @@ import {
   Col,
   Form,
   Row,
-  Button,
 } from 'react-bootstrap';
-import {
-  useDispatch,
-  useSelector,
-} from 'react-redux';
-import {
-  editTableRequest,
-  getAllTables,
-} from '../../../redux/tablesRedux';
+import { useDispatch } from 'react-redux';
+import { editTableRequest } from '../../../redux/tablesRedux';
 import TableNotBusy from '../TableNotBusy/TableNotBusy';
+import TableStatus from '../TableStatus/TableStatus';
+import Update from '../Update/Update';
 
-const Table = ({
-  id,
-  maxPeopleAmount,
-  peopleAmount,
-  status,
-  bill,
-}) => {
-  const tables = useSelector(getAllTables);
+const Table = (props) => {
   const dispatch = useDispatch();
 
-  const [
-    currentPeopleAmount,
-    setCurrentPeopleAmount,
-  ] = useState(peopleAmount);
-  const [currentStatus, setCurrentStatus] =
-    useState(status);
-  const [currentBill, setCurrentBill] =
-    useState(bill);
+  const [peopleAmount, setPeopleAmount] =
+    useState(props.peopleAmount);
+  const [status, setStatus] = useState(
+    props.status
+  );
+  const [bill, setBill] = useState(props.bill);
+  const id = props.id;
+  const maxPeopleAmount = props.maxPeopleAmount;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       editTableRequest({
-        currentStatus,
-        currentPeopleAmount,
-        maxPeopleAmount,
-        currentBill,
         id,
+        status,
+        peopleAmount,
+        maxPeopleAmount,
+        bill,
       })
     );
   };
@@ -62,14 +50,12 @@ const Table = ({
         </Form.Label>
         <Col sm='9' className='mb-3'>
           <Form.Select
-            value={currentStatus}
+            value={status}
             onChange={(e) =>
-              setCurrentStatus(e.target.value)
+              setStatus(e.target.value)
             }
           >
-            {tables.map((table) => (
-              <option>{table.status}</option>
-            ))}
+            <TableStatus />
           </Form.Select>
         </Col>
         <Form.Label column sm='3'>
@@ -79,11 +65,9 @@ const Table = ({
           <Form.Control
             className='text-center'
             style={{ maxWidth: '3rem' }}
-            value={currentPeopleAmount}
+            value={peopleAmount}
             onChange={(e) =>
-              setCurrentPeopleAmount(
-                e.target.value
-              )
+              setPeopleAmount(e.target.value)
             }
           />
           <span
@@ -115,21 +99,16 @@ const Table = ({
               <Form.Control
                 className='text-center'
                 style={{ maxWidth: '4rem' }}
-                value={currentBill}
+                value={bill}
                 onChange={(e) =>
-                  setCurrentBill(e.target.value)
+                  setBill(e.target.value)
                 }
               />
             </Col>
           </>
         )}
         <Col sm='12'>
-          <Button
-            variant='primary'
-            type='submit'
-          >
-            Update
-          </Button>
+          <Update>Update</Update>
         </Col>
       </Form.Group>
     </Form>
