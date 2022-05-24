@@ -1,4 +1,4 @@
-import {Spinner} from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getTablesById } from '../../../redux/tablesRedux';
@@ -24,13 +24,13 @@ const EditTable = () => {
       </div>
     );
 
-    return (
-      <>
-        <h1 className='text-center'>
-            Table {tableData.id}
-        </h1>
-      </>
-    );
-  };
+  return (
+    <>
+      <h1 className='text-center'>
+        Table {tableData.id}
+      </h1>
+    </>
+  );
+};
 
-export default EditTable
+export default EditTable;
