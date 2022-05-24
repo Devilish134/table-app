@@ -33,23 +33,35 @@ const Tables = () => {
           key={table.id}
           className='py-3 mb-4 d-flex justify-content-between align-items-start'
         >
-          <div className='d-flex align-items-center'>
-            <h2 className='my-0'>
-              TABLE{table.id}
-            </h2>
-            <span className='vr mx-3'></span>
-            <b className='mx-2'>Status: </b>
-            <span className='text-muted'>
-              {table.status}
-            </span>
+          <div className='justify-content-start'>
+            <div className='d-flex align-items-center'>
+              <h2 className='my-0'>
+                TABLE{table.id}
+              </h2>
+              <span className='vr mx-3'></span>
+              <b className='mx-2'>Status: </b>
+              <span className='text-muted'>
+                {table.status}
+              </span>
+            </div>
           </div>
-          <Button
-            as={Link}
-            to={`/table/${table.id}`}
-            variant='primary'
-          >
-            Show more
-          </Button>
+          <div className='justify-content-end'>
+            <Button
+              className='mx-2'
+              as={Link}
+              to={`/table/${table.id}`}
+              variant='primary'
+            >
+              Show more
+            </Button>
+            <Button
+              as={Link}
+              to={`/table/edit/${table.id}`}
+              variant='primary'
+            >
+              Edit Table
+            </Button>
+          </div>
         </ListGroup.Item>
       ))}
     </ListGroup>

@@ -11,6 +11,7 @@ import Home from './components/pages/Home/Home';
 import NotFound from './components/pages/NotFound/NotFound';
 import { Container } from 'react-bootstrap';
 import TablePage from './components/pages/TablePage/TablePage';
+import EditTablePage from './components/pages/EditTablePage/EditTablePage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,10 @@ const App = () => {
           <Route
             path='/table/:id'
             element={<TablePage />}
+          />
+          <Route
+            path='/table/edit/:id'
+            element={<EditTablePage />}
           />
           <Route
             path='*'
