@@ -8,7 +8,10 @@ import {
   useDispatch,
   useSelector,
 } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import {
   editTableRequest,
   getTablesById,
@@ -17,6 +20,7 @@ import Update from '../Update/Update';
 
 const EditTable = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [maxPeopleAmount, setMaxPeopleAmount] =
     useState(props.peopleAmount);
@@ -33,6 +37,7 @@ const EditTable = (props) => {
         maxPeopleAmount,
       })
     );
+    navigate(-1);
   };
 
   return (

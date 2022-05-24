@@ -6,7 +6,10 @@ import {
   Row,
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import { editTableRequest } from '../../../redux/tablesRedux';
 import TableNotBusy from '../TableNotBusy/TableNotBusy';
 import TableStatus from '../TableStatus/TableStatus';
@@ -14,6 +17,7 @@ import Update from '../Update/Update';
 
 const Table = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [peopleAmount, setPeopleAmount] =
     useState(props.peopleAmount);
@@ -35,6 +39,7 @@ const Table = (props) => {
         bill,
       })
     );
+    navigate(-1);
   };
 
   const validPeopleAmount = (num) => {
