@@ -44,7 +44,7 @@ export const editTableRequest = (
 ) => {
   return (dispatch) => {
     const options = {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },

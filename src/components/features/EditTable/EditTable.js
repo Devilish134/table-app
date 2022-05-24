@@ -4,29 +4,42 @@ import {
   Form,
   Row,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
-  getAllTables,
+  editTableRequest,
   getTablesById,
 } from '../../../redux/tablesRedux';
 import Update from '../Update/Update';
 
-const EditTable = ({ peopleAmount }) => {
-  const [
-    currentPeopleAmount,
-    setCurrentPeopleAmount,
-  ] = useState(peopleAmount);
+const EditTable = (props) => {
+  const dispatch = useDispatch();
+
+  const [maxPeopleAmount, setMaxPeopleAmount] =
+    useState(props.peopleAmount);
   const { id } = useParams();
   const tableData = useSelector((state) =>
     getTablesById(state, parseInt(id))
   );
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      editTableRequest({
+        id,
+        maxPeopleAmount,
+      })
+    );
+  };
+
   return (
     <Form
-      //key={id}
+      key={id}
       className='d-flex justify-content-center flex-fill my-5'
-      //onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <Form.Group
         as={Row}
@@ -44,7 +57,11 @@ const EditTable = ({ peopleAmount }) => {
             <Form.Control
               className='text-center mx-4'
               style={{ maxWidth: '3rem' }}
-              value={' '}
+              onChange={(e) =>
+                setMaxPeopleAmount(
+                  e.target.value
+                )
+              }
             />
           </Col>
         </Form.Label>

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import {
+  Button,
   Col,
   Form,
   Row,
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { editTableRequest } from '../../../redux/tablesRedux';
 import TableNotBusy from '../TableNotBusy/TableNotBusy';
 import TableStatus from '../TableStatus/TableStatus';
@@ -123,6 +125,14 @@ const Table = (props) => {
         )}
         <Col sm='12'>
           <Update>Update</Update>
+          <Button
+            className='mx-2'
+            as={Link}
+            to={`/table/edit/${id}`}
+            variant='primary'
+          >
+            Edit Table
+          </Button>
         </Col>
       </Form.Group>
     </Form>
