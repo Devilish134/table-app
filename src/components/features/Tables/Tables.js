@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Button,
   ListGroup,
@@ -5,12 +6,31 @@ import {
 } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../../config';
 import { getAllTables } from '../../../redux/tablesRedux';
 
 const Tables = () => {
-  const tables = useSelector(getAllTables);
+  const table = useSelector(getAllTables);
 
-  if (tables.length === 0)
+  const [tables, setTables] = useState([]);
+  useEffect(() => {
+    const fetchTables = () => {
+      fetch(`${API_URL}/tables/`)
+        .then((res) => res.json())
+        .then((json) => {
+          const result = json.sort((a, b) =>
+            a.name.localeCompare(b.id)
+          );
+          setTables(result);
+        })
+        .catch((e) => {
+          console.log('error', e);
+        });
+    };
+    fetchTables();
+  }, []);
+
+  if (table.length === 0)
     return (
       <div className='text-center my-5'>
         <Button variant='primary' disabled>
@@ -28,20 +48,20 @@ const Tables = () => {
 
   return (
     <ListGroup variant='flush'>
-      {tables.map((table) => (
+      {tables.map((tables) => (
         <ListGroup.Item
-          key={table.id}
+          key={tables.id}
           className='py-3 mb-4 d-flex justify-content-between align-items-start'
         >
           <div className='justify-content-start'>
             <div className='d-flex align-items-center'>
               <h2 className='my-0'>
-                TABLE{table.id}
+                {tables.name}
               </h2>
               <span className='vr mx-3'></span>
               <b className='mx-2'>Status: </b>
               <span className='text-muted'>
-                {table.status}
+                {tables.status}
               </span>
             </div>
           </div>
@@ -49,14 +69,14 @@ const Tables = () => {
             <Button
               className='mx-2'
               as={Link}
-              to={`/table/${table.id}`}
+              to={`/table/${tables.id}`}
               variant='primary'
             >
               Show more
             </Button>
             <Button
               as={Link}
-              to={`/table/edit/${table.id}`}
+              to={`/table/edit/${tables.id}`}
               variant='primary'
             >
               Edit Table

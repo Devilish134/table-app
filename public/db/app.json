@@ -2,6 +2,7 @@
   "tables": [
     {
       "id": 1,
+      "name": "Table 1",
       "status": "free",
       "peopleAmount": 0,
       "maxPeopleAmount": "5",
@@ -9,20 +10,23 @@
     },
     {
       "id": 2,
-      "status": "free",
-      "peopleAmount": "5",
+      "name": "Table 2",
+      "status": "busy",
+      "peopleAmount": "06",
       "maxPeopleAmount": "15",
       "bill": "15"
     },
     {
       "id": 3,
+      "name": "Table 3",
       "status": "busy",
-      "peopleAmount": "3",
-      "maxPeopleAmount": "5",
-      "bill": "15"
+      "peopleAmount": "2",
+      "maxPeopleAmount": "8",
+      "bill": "25"
     },
     {
       "id": 4,
+      "name": "Table 4",
       "status": "busy",
       "peopleAmount": "6",
       "maxPeopleAmount": "8",
@@ -30,6 +34,7 @@
     },
     {
       "id": 5,
+      "name": "Table 5",
       "status": "busy",
       "peopleAmount": "2",
       "maxPeopleAmount": "15",
