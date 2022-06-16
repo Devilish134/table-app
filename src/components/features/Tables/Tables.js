@@ -19,7 +19,7 @@ const Tables = () => {
         .then((res) => res.json())
         .then((json) => {
           const result = json.sort((a, b) =>
-            a.name.localeCompare(b.id)
+            a.name.localeCompare(b.name)
           );
           setTables(result);
         })

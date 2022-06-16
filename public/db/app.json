@@ -20,7 +20,7 @@
       "id": 3,
       "name": "Table 3",
       "status": "busy",
-      "peopleAmount": "2",
+      "peopleAmount": "4",
       "maxPeopleAmount": "8",
       "bill": "25"
     },
