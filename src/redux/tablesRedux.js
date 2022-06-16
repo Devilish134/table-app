@@ -19,8 +19,6 @@ const UPDATE_TABLE = createActionName(
 );
 const EDIT_TABLE =
   createActionName('EDIT_TABLE');
-const SORT_TABLE =
-  createActionName('SORT_TABLE');
 
 //action creators
 export const updateTable = (payload) => ({
@@ -29,10 +27,6 @@ export const updateTable = (payload) => ({
 });
 export const editTable = (payload) => ({
   type: EDIT_TABLE,
-  payload,
-});
-export const sortTable = (payload) => ({
-  type: SORT_TABLE,
   payload,
 });
 
@@ -61,13 +55,9 @@ export const editTableRequest = (
     fetch(
       `${API_URL}/tables/${updatedTable.id}`,
       options
-    )
-      .then((tables) =>
-        dispatch(sortTable(tables))
-      )
-      .then(() =>
-        dispatch(editTable(updatedTable))
-      );
+    ).then(() =>
+      dispatch(editTable(updatedTable))
+    );
   };
 };
 
@@ -79,17 +69,6 @@ const tablesReducer = (
   switch (action.type) {
     case UPDATE_TABLE:
       return [...action.payload];
-    case SORT_TABLE: {
-      return statePart
-        .slice()
-        .sort(function ({ id, table }) {
-          const tableA = table.id,
-            tableB = table.id;
-          if (tableA < tableB) return -1;
-          if (tableA > tableB) return 1;
-          return 0;
-        });
-    }
     case EDIT_TABLE: {
       const filteredTables = statePart.filter(
         (table) => {
