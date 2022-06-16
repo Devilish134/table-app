@@ -1,8 +1,9 @@
 import { API_URL } from '../config';
 
 // selectors
-export const getAllTables = ({ tables }) =>
-  tables;
+export const getAllTables = ({ tables }) => {
+  return tables;
+};
 
 export const getTablesById = (
   { tables },
@@ -69,11 +70,10 @@ const tablesReducer = (
     case UPDATE_TABLE:
       return [...action.payload];
     case EDIT_TABLE: {
-      const filteredTables = statePart.filter(
-        (table) => {
+      const filteredTables =
+        statePart.filter.splice()((table) => {
           return table.id !== action.payload.id;
-        }
-      );
+        });
       return [
         ...filteredTables,
         action.payload,
