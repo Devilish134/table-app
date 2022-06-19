@@ -28,7 +28,7 @@ const EditTablePage = () => {
   return (
     <>
       <h1 className='text-center'>
-        Table {tableData.id}
+        {tableData.name}
       </h1>
       <EditTable />
     </>

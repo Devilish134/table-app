@@ -23,7 +23,7 @@ const EditTable = (props) => {
   const navigate = useNavigate();
 
   const [maxPeopleAmount, setMaxPeopleAmount] =
-    useState(props.peopleAmount);
+    useState(props.maxPeopleAmount);
   const { id } = useParams();
   const tableData = useSelector((state) =>
     getTablesById(state, parseInt(id))
