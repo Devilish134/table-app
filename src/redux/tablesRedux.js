@@ -72,7 +72,7 @@ const tablesReducer = (
     case EDIT_TABLE: {
       const filteredTables = statePart.filter(
         (table) => {
-          return table.id === action.payload.id;
+          return table.id !== action.payload.id;
         }
       );
       return [
