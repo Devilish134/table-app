@@ -34,7 +34,7 @@ const EditTable = (props) => {
         maxPeopleAmount,
       })
     );
-    navigate(-1);
+    navigate('/');
   };
 
   return (
