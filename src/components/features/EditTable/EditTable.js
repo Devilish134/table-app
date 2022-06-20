@@ -4,18 +4,9 @@ import {
   Form,
   Row,
 } from 'react-bootstrap';
-import {
-  useDispatch,
-  useSelector,
-} from 'react-redux';
-import {
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
-import {
-  editTableRequest,
-  getTablesById,
-} from '../../../redux/tablesRedux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { editTableRequest } from '../../../redux/tablesRedux';
 import Update from '../Update/Update';
 
 const EditTable = (props) => {
@@ -24,10 +15,10 @@ const EditTable = (props) => {
 
   const [maxPeopleAmount, setMaxPeopleAmount] =
     useState(props.maxPeopleAmount);
-  const { id } = useParams();
-  const tableData = useSelector((state) =>
+  const id = props.id;
+  /*const tableData = useSelector((state) =>
     getTablesById(state, parseInt(id))
-  );
+  );*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +44,7 @@ const EditTable = (props) => {
         <b>
           Current Max Amount:
           <span className='mx-3'>
-            {tableData.maxPeopleAmount}
+            {maxPeopleAmount}
           </span>
         </b>
         <Form.Label className='d-flex my-3 align-items-center'>
@@ -77,5 +68,4 @@ const EditTable = (props) => {
     </Form>
   );
 };
-
 export default EditTable;

@@ -30,7 +30,7 @@ const EditTablePage = () => {
       <h1 className='text-center'>
         {tableData.name}
       </h1>
-      <EditTable />
+      <EditTable {...tableData} />
     </>
   );
 };

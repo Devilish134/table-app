@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Table 1",
-      "status": "free",
+      "status": "cleaning",
       "peopleAmount": 0,
       "maxPeopleAmount": "6",
       "bill": "15"
@@ -12,8 +12,8 @@
       "id": 2,
       "name": "Table 2",
       "status": "busy",
-      "peopleAmount": "06",
-      "maxPeopleAmount": "12",
+      "peopleAmount": "2",
+      "maxPeopleAmount": "5",
       "bill": "15"
     },
     {
@@ -21,7 +21,7 @@
       "name": "Table 3",
       "status": "busy",
       "peopleAmount": "2",
-      "maxPeopleAmount": "7",
+      "maxPeopleAmount": "8",
       "bill": "50"
     },
     {
