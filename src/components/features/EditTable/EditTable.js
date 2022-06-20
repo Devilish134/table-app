@@ -22,6 +22,10 @@ const EditTable = (props) => {
   const [maxPeopleAmount, setMaxPeopleAmount] =
     useState(props.maxPeopleAmount);
   const id = props.id;
+  const peopleAmount = props.peopleAmount;
+  const status = props.status;
+  const bill = props.bill;
+  const name = props.name;
   const tableData = useSelector((state) =>
     getTablesById(state, parseInt(id))
   );
@@ -31,7 +35,11 @@ const EditTable = (props) => {
     dispatch(
       editTableRequest({
         id,
+        name,
+        status,
+        peopleAmount,
         maxPeopleAmount,
+        bill,
       })
     );
     navigate('/');

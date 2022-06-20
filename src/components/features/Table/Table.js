@@ -27,12 +27,14 @@ const Table = (props) => {
   const [bill, setBill] = useState(props.bill);
   const id = props.id;
   const maxPeopleAmount = props.maxPeopleAmount;
+  const name = props.name;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       editTableRequest({
         id,
+        name,
         status,
         peopleAmount,
         maxPeopleAmount,
