@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../../config';
 import { getAllTables } from '../../../redux/tablesRedux';
+import './TablesResponsive.css';
 
 const Tables = () => {
   const table = useSelector(getAllTables);
@@ -55,19 +56,21 @@ const Tables = () => {
         >
           <div className='justify-content-start'>
             <div className='d-flex align-items-center'>
-              <h2 className='my-0'>
+              <h2 className='my-0 responsive'>
                 {tables.name}
               </h2>
-              <span className='vr mx-3'></span>
-              <b className='mx-2'>Status: </b>
-              <span className='text-muted'>
+              <span className='mx-3'></span>
+              <b className='mx-2 responsive'>
+                Status:{' '}
+              </b>
+              <span className='text-muted responsive'>
                 {tables.status}
               </span>
             </div>
           </div>
           <div className='justify-content-end'>
             <Button
-              className='mx-2'
+              className='mx-2 sm-2 xs-1 responsive'
               as={Link}
               to={`/table/${tables.id}`}
               variant='primary'
@@ -75,6 +78,7 @@ const Tables = () => {
               Show more
             </Button>
             <Button
+              className='responsive'
               as={Link}
               to={`/table/edit/${tables.id}`}
               variant='primary'

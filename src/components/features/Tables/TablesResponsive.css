@@ -1,0 +1,8 @@
+@media (max-width: 420px) {
+  .responsive {
+    max-width: 360px;
+    font-size: 3.2vw;
+    flex-direction: row;
+    padding: 1px;
+  }
+}
